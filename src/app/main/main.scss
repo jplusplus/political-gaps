@@ -7,7 +7,6 @@
   color:$body-color;
   overflow: auto;
   padding: $spacer * $line-height;
-  background:#39253D;
 
   &__heading, &__tabs, &__chart, &__legislatures {
     margin:0 auto  $spacer  * $line-height;
@@ -88,17 +87,23 @@
 
       &__node {
         fill: $body-color;
+        stroke: $body-color;
+        stroke-width:1px;
         transition: fill 400ms;
 
-        @for $i from 0 through 10 {
-          &--#{$i} { fill: mix($brand-warning, $brand-info, 100*$i/10) }
+        @for $i from 0 through 14 {
+          &--#{$i} {
+            fill: darken(#FF217B, 50*$i/14);
+            stroke: darken(#FF217B, 50 - 50*$i/14);
+          }
         }
 
         &--no-data {
-          fill: white;
+          fill: $body-color;
         }
-        .main__chart--gender &--male { fill:#F0908A; }
-        .main__chart--gender &--female { fill:#A8C1BD; }
+        .main__chart--gender & { stroke-width:0; }
+        .main__chart--gender &--male { fill:#37A048; }
+        .main__chart--gender &--female { fill:#A24853; }
         .main__chart--gender &--other { fill:#F4CEA5; }
       }
     }
