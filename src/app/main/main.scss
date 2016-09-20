@@ -88,7 +88,6 @@
 
       &__node {
         fill: $body-color;
-        fill-opacity: .9;
         transition: fill 400ms;
 
         @for $i from 0 through 10 {
@@ -97,7 +96,6 @@
 
         &--no-data {
           fill: white;
-          fill-opacity: .8;
         }
         .main__chart--gender &--male { fill:#F0908A; }
         .main__chart--gender &--female { fill:#A8C1BD; }
