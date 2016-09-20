@@ -1,0 +1,132 @@
+.main {
+  position: fixed;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  color:$body-color;
+  overflow: auto;
+  padding: $spacer * $line-height;
+  background:#39253D;
+
+  &__heading, &__tabs, &__chart, &__legislatures {
+    margin:0 auto  $spacer  * $line-height;
+  }
+
+  &__heading {
+    padding:$spacer * $line-height;
+    border-radius: 3px;
+    margin:0 auto;
+    font-size: 1.1em;
+    position: fixed;
+    z-index:-1;
+    text-align: center;
+    width: 100%;
+    padding-top:$line-height * 6rem;
+
+    &__description {
+      font-family: $leads-font-family;
+      font-size: 1em;
+      font-weight: lighter;
+    }
+  }
+
+  &__legislatures {
+    background:#48344C;
+    padding:$spacer/2 $spacer * $line-height 0;
+    font-size: 0.9rem;
+    margin-bottom:0;
+
+    select {
+      font-size: 1em;
+      margin-left:$spacer/2;
+      padding-left:$spacer/2;
+      padding-right:$spacer/2;
+      background:darken(#48344C, 5);
+      color:$body-color;
+    }
+  }
+
+  &__tabs {
+
+    a {
+      color:rgba(white, .8);
+
+      &.nav-link.active {
+        color:white;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__chart {
+    border-radius: 3px;
+    position: relative;
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:-1;
+
+    &:after {
+      // content:""; // DISABLED
+      padding-top:50%;
+      width:100%;
+      display: block;
+    }
+
+    svg {
+      position: absolute;
+      top:0;
+      left:0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &__people {
+
+      &__node {
+        fill: $body-color;
+        fill-opacity: .9;
+        transition: fill 400ms;
+
+        @for $i from 0 through 10 {
+          &--#{$i} { fill: mix($brand-warning, $brand-info, 100*$i/10) }
+        }
+
+        &--no-data {
+          fill: white;
+          fill-opacity: .8;
+        }
+        .main__chart--gender &--male { fill:#F0908A; }
+        .main__chart--gender &--female { fill:#A8C1BD; }
+        .main__chart--gender &--other { fill:#F4CEA5; }
+      }
+    }
+
+    &__legend {
+      position: absolute;
+      bottom:0;
+      left:0;
+      right:0;
+      text-align: center;
+      color:$body-color;
+      text-shadow: 1px 1px 0 $body-bg, -1px 1px 0 $body-bg, 1px -1px 0 $body-bg, -1px -1px 0 $body-bg,
+                   2px 2px 0 $body-bg, -2px 2px 0 $body-bg, 2px -2px 0 $body-bg, -2px -2px 0 $body-bg;
+      display: flex;
+      flex-wrap: wrap;
+
+      &__group {
+        position: relative;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        min-height: 1px;
+        font-size: .9rem;
+        padding-bottom: $spacer;
+      }
+    }
+  }
+
+}
