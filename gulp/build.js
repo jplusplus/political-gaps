@@ -95,3 +95,9 @@ gulp.task('clean', function () {
 });
 
 gulp.task('build', ['html', 'fonts', 'other']);
+
+gulp.task('deploy', ['build'], function() {
+  return gulp.src("./dist/**/*").pipe($.ghPages({
+    remoteUrl: "git@github.com:jplusplus/political-gaps.git"
+  }));
+});
