@@ -18,7 +18,7 @@ angular.module 'politicalGaps'
         resolve:
           legislatures: (Restangular)->
             'ngInject'
-            Restangular.all('legislatures').withHttpConfig(cache: yes).getList()
+            Restangular.all('legislatures').withHttpConfig(cache: yes).getList(limit: 300)
           legislature_id: ($stateParams, legislatures)->
             'ngInject'
             $stateParams.legislature_id_eq || legislatures[0].id
