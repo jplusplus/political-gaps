@@ -10,7 +10,7 @@
     <label>
       Diversity report for
       <select class="form-control"
-              ng-options="legislature.id as legislature.name group by legislature.country for legislature in main.legislatures"
+              ng-options="legislature.id as legislature.display_name group by legislature.country for legislature in main.legislatures"
               ng-model="main.legislature">
       </select>
     </label>

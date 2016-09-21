@@ -16,12 +16,19 @@ angular.module 'politicalGaps'
             dynamic: yes
             value: 'gender'
         resolve:
-          legislatures: (Restangular)->
+          legislatures: ($http)->
             'ngInject'
-            Restangular.all('legislatures').withHttpConfig(cache: yes).getList(limit: 300)
+            $http.get('data/legislatures.json').then (r)->
+              for legislature in r.data
+                legislature.display_name = legislature.name
+                legislature.display_name += ' - '
+                legislature.display_name += 'Completed at '
+                legislature.display_name += ~~(legislature.completion * 1000)/10
+                legislature.display_name += '%'
+              r.data
           legislature_id: ($stateParams, legislatures)->
             'ngInject'
             $stateParams.legislature_id_eq || legislatures[0].id
-          summary: (Restangular, legislature_id)->
+          summary: ($http, legislature_id)->
             'ngInject'
-            Restangular.one('mandatures').one('summary').get legislature_id_eq: legislature_id, topic: 'all'
+            $http.get('data/summary-' + legislature_id + '.json').then (r)-> r.data
