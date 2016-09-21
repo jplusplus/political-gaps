@@ -6,11 +6,7 @@
   right:0;
   color:$body-color;
   overflow: auto;
-  padding: $spacer * $line-height;
-
-  &__heading, &__tabs, &__chart, &__legislatures {
-    margin:0 auto  $spacer  * $line-height;
-  }
+  padding:0 $spacer * $line-height;
 
   &__heading {
     padding:$spacer * $line-height;
@@ -18,45 +14,51 @@
     margin:0 auto;
     font-size: 1.1em;
     position: fixed;
-    z-index:-1;
     text-align: center;
     width: 100%;
-    padding-top:$line-height * 6rem;
+    @include gradient-y($body-bg, rgba($body-bg, 0));
 
     &__description {
       font-family: $leads-font-family;
       font-size: 1em;
       font-weight: lighter;
     }
-  }
 
-  &__legislatures {
-    background:#48344C;
-    padding:$spacer/2 $spacer * $line-height 0;
-    font-size: 0.9rem;
-    margin-bottom:0;
+    &__legislatures {
+      background:#48344C;
+      padding:$spacer/2 $spacer * $line-height 0;
+      font-size: 0.9rem;
+      margin-bottom:0;
+      display: inline-block;
+      box-shadow:0 3px 0 0 lighten(#48344C, 10);
+      border-radius:4px;
 
-    select {
-      font-size: 1em;
-      margin-left:$spacer/2;
-      padding-left:$spacer/2;
-      padding-right:$spacer/2;
-      background:darken(#48344C, 5);
-      color:$body-color;
+      select {
+        font-size: 1em;
+        margin-left:$spacer/2;
+        padding-left:$spacer/2;
+        padding-right:$spacer/2;
+        background:darken(#48344C, 5);
+        color:$body-color;
+      }
     }
-  }
 
-  &__tabs {
+    &__tabs {
+      display: inline-block;
 
-    a {
-      color:rgba(white, .8);
+      a {
+        color:rgba(white, .8);
 
-      &.nav-link.active {
-        color:white;
-        font-weight: bold;
+        &.nav-link.active {
+          color:white;
+          font-weight: bold;
+          box-shadow:0 3px 0 0 lighten(#48344C, 10);
+          border-radius: 0 0 4px 4px;
+        }
       }
     }
   }
+
 
   &__chart {
     border-radius: 3px;
@@ -128,6 +130,21 @@
         min-height: 1px;
         font-size: .9rem;
         padding-bottom: $spacer;
+        color:rgba($body-color, .4);
+
+        div {
+          font-weight: bold;
+          color:$body-color;
+        }
+
+        &:not(:first-child):after {
+          content:"";
+          display:block;
+          border-right:1px dashed rgba(white, .2);
+          position: fixed;
+          top:0;
+          bottom:0;
+        }
       }
     }
   }

@@ -22,7 +22,7 @@ angular.module 'politicalGaps'
         force: =>
           @_force = @_force or do =>
             d3.forceSimulation()
-              .force "charge", d3.forceManyBody().strength(-4)
+              .force "charge", d3.forceManyBody().strength(-1)
               .force "x", d3.forceX (d)=> d().forceX()
               .force "y", d3.forceY (d)=> d().forceY()
               .on("tick", @forceTicked)
@@ -105,7 +105,7 @@ angular.module 'politicalGaps'
           # Enter the data and create nodes
           nodeEnter = @nodes.enter()
               .append "circle"
-              .attr "r", 4
+              .attr "r", 3
               .attr "class", (d)-> d().class()
           # Merge with the old @nodes subset
           @nodes = nodeEnter.merge @nodes
@@ -121,9 +121,9 @@ angular.module 'politicalGaps'
             .merge groups
               .html (d)=>
                 [
-                  topics[scope.topic].groups[d]?.label or d
-                  Math.round(1000 * @count(d)/@summary.total)/10 + '%'
-                ].join "<br />"
+                  '<div>' + (topics[scope.topic].groups[d]?.label or d) + '</div>'
+                  Math.round(10000 * @count(d)/@summary.total)/100 + '%'
+                ].join ""
           # Remove old node
           groups.exit().remove()
         count: (group)=>

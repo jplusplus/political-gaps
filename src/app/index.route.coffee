@@ -16,10 +16,15 @@ angular.module 'politicalGaps'
             dynamic: yes
             value: 'gender'
         resolve:
-          legislatures: ($http)->
+          countries: ($http)->
+            'ngInject'
+            $http.get('data/countries.json').then (r)-> r.data
+          legislatures: ($http, countries)->
             'ngInject'
             $http.get('data/legislatures.json').then (r)->
               for legislature in r.data
+                legislature.country = _.find countries, alpha2: legislature.country
+                # Build display name
                 legislature.display_name = legislature.name
                 legislature.display_name += ' - '
                 legislature.display_name += 'Completed at '

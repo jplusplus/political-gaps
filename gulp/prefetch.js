@@ -10,6 +10,10 @@ var $       = require('gulp-load-plugins')({ pattern: ['gulp-*'] });
 
 const API_BASE          = 'http://www.jquestapp.com'
 
+const COUNTRIES_URL     = API_BASE + '/api/v1/countries?limit=300';
+const COUNTRIES_DIR     = path.join(conf.paths.src, '/data');
+const COUNTRIES_PATH    = path.join(COUNTRIES_DIR, '/countries.json');
+
 const LEGISLATURES_URL  = API_BASE + '/political-gaps/api/v1/legislatures?limit=300';
 const LEGISLATURES_DIR  = path.join(conf.paths.src, '/data');
 const LEGISLATURES_PATH = path.join(LEGISLATURES_DIR, '/legislatures.json');
@@ -18,6 +22,11 @@ const SUMMARIES_URL     = API_BASE + '/political-gaps/api/v1/mandatures/summary'
 const SUMMARIES_DIR     = path.join(conf.paths.src, '/data');
 
 const COMPLETION_TOPICS = ['political_leaning', 'gender', 'profession_category', 'age_range'];
+
+gulp.task('prefetch:countries', function(){
+  // Download the legislatures file
+  return request(COUNTRIES_URL).pipe(fs.createWriteStream(COUNTRIES_PATH))
+});
 
 gulp.task('prefetch:legislatures', function(){
   // Download the legislatures file
@@ -36,15 +45,15 @@ gulp.task('prefetch:summaries', ['prefetch:legislatures'], function(end){
       // Build path
       let summary_path = path.join(SUMMARIES_DIR, '/summary-' + legislature.id + '.json');
       // Output the action
-      $.util.log('Saving', $.util.colors.magenta(summart_path));
+      $.util.log('Saving', $.util.colors.magenta(summary_path));
       // Write the file then continue
-      fs.writeFile(summart_path, summary, next);
+      fs.writeFile(summary_path, summary, next);
     })
   }, end);
 });
 
 
-gulp.task('prefetch:completion', function(done){
+gulp.task('prefetch:completion', ['prefetch:summaries'], function(done){
   var json_path = path.join('..', LEGISLATURES_PATH);
   // Load the json
   var legislatures = require(json_path);
@@ -70,4 +79,4 @@ gulp.task('prefetch:completion', function(done){
 });
 
 
-gulp.task('prefetch', ['prefetch:summaries']);
+gulp.task('prefetch', ['prefetch:countries', 'prefetch:completion']);
