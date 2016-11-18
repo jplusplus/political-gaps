@@ -41,7 +41,7 @@
                           'main__elastic__list__item--active': main.isDifficultyLevel(difficultyLevel),
                           'main__elastic__list__item--reduced': !main.matchDifficultyLevel(difficultyLevel)
                         }">
-                  {{ difficultyLevel }}
+                  {{ main.administrativeLevels[difficultyLevel - 1] }}
                 </button>
               </li>
             </ul>
@@ -70,6 +70,13 @@
           </div>
         </div>
       </div>
+
+      <ul>
+        <li ng-repeat="legislature in main.getFilteredLegislatures()">
+          {{ legislature.name }}
+        </li>
+      </ul>
+
     </div>
   </form>
 

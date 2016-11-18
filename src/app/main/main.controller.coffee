@@ -12,6 +12,11 @@ angular.module 'politicalGaps'
       legislatures: legislatures
       legislature: legislature_id * 1
       topic: $stateParams.topic
+      administrativeLevels: [
+        'National',
+        'Regional',
+        'Local'
+      ]
       # Public methods
       uiOnParamsChanged: (changedParams, transition)=>
         @topic = changedParams.topic
@@ -81,7 +86,7 @@ angular.module 'politicalGaps'
       buildFilters: =>
         # Values for the list
         @countries = _.chain(legislatures).map('country').uniq().sortBy((c)-> c.name).value()
-        @difficultyLevels = _.chain(legislatures).map('difficulty_level').uniq().sort().reverse().value()
+        @difficultyLevels = _.chain(legislatures).map('difficulty_level').uniq().sort().value()
         @terms = _.chain(legislatures).map('term').uniq().sort().reverse().value()
         # Build the legislatures list
         do @buildFilteredLegislatures
