@@ -80,7 +80,11 @@ angular.module 'politicalGaps'
             groups = _.chain( @summary[topic] )
               .keys()
               .filter (d)=> @count(d) > 0
-              .sortBy (d)=> topics[topic].groups[d]?.order or @summary[topic][d]
+              .sortBy (d)=>
+                if topics[topic].groups[d]?.order?
+                  topics[topic].groups[d]?.order
+                else
+                  @summary[topic][d]
               .value()
             groups.push('No data') if @countNoData() > 0
             groups

@@ -6,7 +6,49 @@
   right:0;
   color:$body-color;
   overflow: auto;
-  padding:0 $spacer * $line-height;
+  padding:0;
+
+  &__elastic {
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background: $body-bg;
+    z-index:100;
+    overflow: auto;
+    margin-top:$spacer * 10;
+
+    &__title {
+      font-size: 1.1em;
+      padding:$spacer/2 $spacer;
+      color: darken($brand-primary, 10);
+    }
+
+    &__list {
+      max-height: 350px;
+      overflow: auto;
+      padding:0;
+      margin:0;
+
+      &__item {
+        overflow: hidden;
+        max-height:3em;
+        @include transition(.6s);
+
+        &--reduced, &--reduced:active, &--reduced:focus, &--reduced:hover  {
+          color:transparent;
+          background: darken($brand-primary, 10);
+          max-height:0;
+        }
+
+        &--active, &--active:active, &--active:focus, &--active:hover {
+          background: #E93F00;
+          color: white;
+        }
+      }
+    }
+  }
 
   &__heading {
     padding:$spacer * $line-height;

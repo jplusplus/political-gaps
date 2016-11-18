@@ -11,7 +11,7 @@ angular.module('politicalGaps')
     age_range:
       groups:
         'bellow-30':
-          label: 'Bellow 30'
+          label: 'Under 30'
           order: 0
         '30-40':
           label: '30 to 40'

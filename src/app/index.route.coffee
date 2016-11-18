@@ -23,11 +23,16 @@ angular.module 'politicalGaps'
             'ngInject'
             $http.get('data/legislatures.json').then (r)->
               for legislature in r.data
+                legislature.end_date   = new Date legislature.end_date
+                legislature.start_date = new Date legislature.start_date
+                # Find country
                 legislature.country = _.find countries, alpha2: legislature.country
+                # Build term word using the two dates
+                legislature.term = "#{legislature.start_date.getFullYear()}-#{legislature.end_date.getFullYear()}"
                 # Build display name
                 legislature.display_name = legislature.name
                 legislature.display_name += ' - '
-                legislature.display_name += 'Completed at '
+                legislature.display_name += 'Completion rate: '
                 legislature.display_name += ~~(legislature.completion * 1000)/10
                 legislature.display_name += '%'
               r.data
