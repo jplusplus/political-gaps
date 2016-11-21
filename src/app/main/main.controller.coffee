@@ -1,5 +1,5 @@
 angular.module 'politicalGaps'
-  .controller 'MainController', (summary, countries, legislatures, $state, $stateParams, legislature_id, $scope)->
+  .controller 'MainController', (countries, legislatures)->
     'ngInject'
     new class MainController
       # Private attributes
@@ -8,10 +8,7 @@ angular.module 'politicalGaps'
       _term: []
       __legislatures: []
       # Public attributes
-      summary: summary
       legislatures: legislatures
-      legislature: legislature_id * 1
-      topic: $stateParams.topic
       administrativeLevels: [
         'National',
         'Regional',
@@ -51,10 +48,16 @@ angular.module 'politicalGaps'
       isTerm: (val)=>
         @_term.indexOf(val) > -1
       matchCountryAlpha2: (val)=>
-        _.some @getFilteredLegislatures(), (l)-> l.country.alpha2 is val
+        _.filter @getFilteredLegislatures(), (l)-> l.country.alpha2 is val
       matchDifficultyLevel: (val)=>
-        _.some @getFilteredLegislatures(), difficulty_level: val
+        _.filter @getFilteredLegislatures(), difficulty_level: val
       matchTerm: (val)=>
+        _.filter @getFilteredLegislatures(), term: val
+      someCountryAlpha2: (val)=>
+        _.some @getFilteredLegislatures(), (l)-> l.country.alpha2 is val
+      someDifficultyLevel: (val)=>
+        _.some @getFilteredLegislatures(), difficulty_level: val
+      someTerm: (val)=>
         _.some @getFilteredLegislatures(), term: val
       toggleCountryAlpha2: (val)=>
         @toggleFrom @_countryAlpha2, val
@@ -93,7 +96,3 @@ angular.module 'politicalGaps'
       constructor: ->
         # Initial build of filters
         do @buildFilters
-        # Whatch for change on legislature selection
-        $scope.$watch 'main.legislature', (id, old)->
-          if id isnt old
-            $state.go 'main', legislature_id_eq: id

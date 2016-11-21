@@ -5,16 +5,10 @@ angular.module 'politicalGaps'
     # Home state
     $stateProvider
       .state 'main',
-        url: '/:legislature_id_eq'
+        url: '/'
         templateUrl: 'app/main/main.html'
         controller: 'MainController'
         controllerAs: 'main'
-        params:
-          legislature_id_eq:
-            value: null
-          topic:
-            dynamic: yes
-            value: 'gender'
         resolve:
           countries: ($http)->
             'ngInject'
@@ -36,9 +30,24 @@ angular.module 'politicalGaps'
                 legislature.display_name += ~~(legislature.completion * 1000)/10
                 legislature.display_name += '%'
               r.data
-          legislature_id: ($stateParams, legislatures)->
-            'ngInject'
-            $stateParams.legislature_id_eq || legislatures[0].id
-          summary: ($http, legislature_id)->
-            'ngInject'
-            $http.get('data/summary-' + legislature_id + '.json').then (r)-> r.data
+      # Home state
+      $stateProvider
+        .state 'main.chart',
+          url: ':legislature_id_eq'
+          templateUrl: 'app/main/chart/chart.html'
+          controller: 'MainChartController'
+          controllerAs: 'chart'
+          params:
+            topic:
+              dynamic: yes
+              value: 'gender'
+          resolve:
+            legislature_id: ($stateParams)->
+              'ngInject'
+              1 * $stateParams.legislature_id_eq
+            legislature: (legislatures, legislature_id)->
+              'ngInject'
+              _.find(legislatures, { id: legislature_id });
+            summary: ($http, legislature_id)->
+              'ngInject'
+              $http.get('data/summary-' + legislature_id + '.json').then (r)-> r.data

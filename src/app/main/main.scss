@@ -17,36 +17,100 @@
     background: $body-bg;
     z-index:100;
     overflow: auto;
-    margin-top:$spacer * 10;
 
-    &__title {
-      font-size: 1.1em;
-      padding:$spacer/2 $spacer;
-      color: darken($brand-primary, 10);
+    &__introduction {
+      color:white;
+      padding:$spacer * 3 0;
+      margin:0;
+      background: url('../assets/images/people-coffee-notes-tea-high-contrast-green.jpg') no-repeat center center;
+      background-size: cover;
+
+      a {
+        color:inherit;
+        border-bottom: 1px solid rgba(white, .4);
+      }
     }
 
+    &__filters {
+      color:white;
+      background: #2d1431;
+      padding-top:$spacer * 2;
+      margin-bottom:$spacer * 2;
+
+      .btn {
+        color:inherit;
+      }
+
+      &__card {
+        background: #463649;
+      }
+
+      &__title {
+        font-size: 1.1em;
+        padding:$spacer $spacer;
+        border-bottom: 1px solid rgba(white, .1);
+        margin:0;
+        font-weight: bolder;
+      }
+
+      &__alert {
+        margin-top:$spacer * 2;
+        padding: $spacer;
+        /* color:#776d59;
+        background: #f7dba2; */
+        border-top:1px dashed rgba(white, .1);
+        font-weight: bolder;
+        font-size:.9em;
+      }
+    }
+
+
     &__list {
-      max-height: 350px;
+      max-height: 30vh;
       overflow: auto;
       padding:0;
       margin:0;
 
       &__item {
         overflow: hidden;
-        max-height:3em;
-        @include transition(.6s);
+        display:block;
+        padding:$spacer/2 $spacer;
+        text-align: left;
+        cursor: pointer;
+        color:mix(white, #463649, 70%);
+        font-size:.9em;
+        @include transition(0);
 
         &--reduced, &--reduced:active, &--reduced:focus, &--reduced:hover  {
+          opacity: .5;
+          height:0;
+          line-height: 0;
+          padding-top:0;
+          padding-bottom:0;
+          border:0;
+          pointer-events: none;
           color:transparent;
-          background: darken($brand-primary, 10);
-          max-height:0;
         }
 
         &--active, &--active:active, &--active:focus, &--active:hover {
-          background: #E93F00;
+          background: #77A696;
           color: white;
         }
+
+        .tag {
+          background: rgba(black, .5);
+          border-radius:1em;
+          margin-top:0.2em;
+        }
       }
+    }
+
+    &__card {
+      margin-bottom: $spacer;
+      border-radius:2px;
+      padding:$spacer $spacer * 2;
+      box-shadow:0 3px 0 0 darken($body-bg, 10);
+      @include gradient-directional(darken($body-bg, 4), darken($body-bg, 2));
     }
   }
 
@@ -58,7 +122,8 @@
     position: fixed;
     text-align: center;
     width: 100%;
-    @include gradient-y($body-bg, rgba($body-bg, 0));
+    color: $chart-color;
+    @include gradient-y($chart-bg, rgba($chart-bg, 0));
 
     &__description {
       font-family: $leads-font-family;
@@ -66,33 +131,14 @@
       font-weight: lighter;
     }
 
-    &__legislatures {
-      background:#48344C;
-      padding:$spacer/2 $spacer * $line-height 0;
-      font-size: 0.9rem;
-      margin-bottom:0;
-      display: inline-block;
-      box-shadow:0 3px 0 0 lighten(#48344C, 10);
-      border-radius:4px;
-
-      select {
-        font-size: 1em;
-        margin-left:$spacer/2;
-        padding-left:$spacer/2;
-        padding-right:$spacer/2;
-        background:darken(#48344C, 5);
-        color:$body-color;
-      }
-    }
-
     &__tabs {
       display: inline-block;
 
       a {
-        color:rgba(white, .8);
+        color:rgba($chart-color, .8);
 
         &.nav-link.active {
-          color:white;
+          color:$chart-color;
           font-weight: bold;
           box-shadow:0 3px 0 0 lighten(#48344C, 10);
           border-radius: 0 0 4px 4px;
@@ -100,95 +146,4 @@
       }
     }
   }
-
-
-  &__chart {
-    border-radius: 3px;
-    position: relative;
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    z-index:-1;
-
-    &:after {
-      // content:""; // DISABLED
-      padding-top:50%;
-      width:100%;
-      display: block;
-    }
-
-    svg {
-      position: absolute;
-      top:0;
-      left:0;
-      width: 100%;
-      height: 100%;
-    }
-
-    &__people {
-
-      &__node {
-        fill: $body-color;
-        stroke: $body-color;
-        stroke-width:1px;
-        transition: fill 400ms;
-
-        @for $i from 0 through 14 {
-          &--#{$i} {
-            fill: darken(#FF217B, 50*$i/14);
-            stroke: darken(#FF217B, 50 - 50*$i/14);
-          }
-        }
-
-        &--no-data {
-          fill: $body-color;
-        }
-        .main__chart--gender & { stroke-width:0; }
-        .main__chart--gender &--male { fill:#37A048; }
-        .main__chart--gender &--female { fill:#A24853; }
-        .main__chart--gender &--other { fill:#F4CEA5; }
-      }
-    }
-
-    &__legend {
-      position: absolute;
-      bottom:0;
-      left:0;
-      right:0;
-      text-align: center;
-      color:$body-color;
-      text-shadow: 1px 1px 0 $body-bg, -1px 1px 0 $body-bg, 1px -1px 0 $body-bg, -1px -1px 0 $body-bg,
-                   2px 2px 0 $body-bg, -2px 2px 0 $body-bg, 2px -2px 0 $body-bg, -2px -2px 0 $body-bg;
-      display: flex;
-      flex-wrap: wrap;
-
-      &__group {
-        position: relative;
-        flex-basis: 0;
-        flex-grow: 1;
-        max-width: 100%;
-        min-height: 1px;
-        font-size: .9rem;
-        padding-bottom: $spacer;
-        color:rgba($body-color, .4);
-
-        div {
-          font-weight: bold;
-          color:$body-color;
-        }
-
-        &:not(:first-child):after {
-          content:"";
-          display:block;
-          border-right:1px dashed rgba(white, .2);
-          position: fixed;
-          top:0;
-          bottom:0;
-        }
-      }
-    }
-  }
-
 }

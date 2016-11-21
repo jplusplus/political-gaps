@@ -1,0 +1,28 @@
+<div class="text-center main__heading">
+  <h2 class="main__heading__title" ui-sref="main">
+    Political Gaps
+  </h2>
+  <ul class="nav nav-pills main__heading__tabs">
+    <li class="nav-item">
+      <a class="nav-link" ui-sref="main.chart({topic: 'gender'})" ui-sref-active="active">
+        Gender
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ui-sref="main.chart({topic: 'age_range'})" ui-sref-active="active">
+        Age
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ui-sref="main.chart({topic: 'profession_category'})" ui-sref-active="active">
+        Occupation
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" ui-sref="main.chart({topic: 'political_leaning'})" ui-sref-active="active">
+        Political leaning
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="main__chart main__chart--{{ chart.topic }}" main-chart summary="chart.summary" topic="chart.topic"></div>

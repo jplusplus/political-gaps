@@ -1,0 +1,89 @@
+.main__chart {
+  background: $chart-bg;
+  border-radius: 3px;
+  position: relative;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:-1;
+
+  &:after {
+    // content:""; // DISABLED
+    padding-top:50%;
+    width:100%;
+    display: block;
+  }
+
+  svg {
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__people {
+
+    &__node {
+      fill: $chart-color;
+      stroke: $chart-color;
+      stroke-width:1px;
+      transition: fill 400ms;
+
+      @for $i from 0 through 14 {
+        &--#{$i} {
+          fill: darken(#FF217B, 50*$i/14);
+          stroke: darken(#FF217B, 50 - 50*$i/14);
+        }
+      }
+
+      &--no-data {
+        fill: $body-color;
+      }
+      .main__chart--gender & { stroke-width:0; }
+      .main__chart--gender &--male { fill:#37A048; }
+      .main__chart--gender &--female { fill:#A24853; }
+      .main__chart--gender &--other { fill:#F4CEA5; }
+    }
+  }
+
+  &__legend {
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    text-align: center;
+    color:$body-color;
+    text-shadow: 1px 1px 0 $chart-bg, -1px 1px 0 $chart-bg, 1px -1px 0 $chart-bg, -1px -1px 0 $chart-bg,
+                 2px 2px 0 $chart-bg, -2px 2px 0 $chart-bg, 2px -2px 0 $chart-bg, -2px -2px 0 $chart-bg;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__group {
+      position: relative;
+      flex-basis: 0;
+      flex-grow: 1;
+      max-width: 100%;
+      min-height: 1px;
+      font-size: .9rem;
+      padding-bottom: $spacer;
+      color:rgba($chart-color, .4);
+
+      div {
+        font-weight: bold;
+        color:$chart-color;
+      }
+
+      &:not(:first-child):after {
+        content:"";
+        display:block;
+        border-right:1px dashed rgba(white, .2);
+        position: fixed;
+        top:0;
+        bottom:0;
+      }
+    }
+  }
+}

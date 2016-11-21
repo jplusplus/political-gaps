@@ -15,8 +15,8 @@ $enable-flex: true;
 
 // Body
 //
-$body-bg: #2d1431;
-$body-color: #DCDBDF;
+$body-bg: #F2EEE8;
+$body-color: #222;
 
 // Colors
 //
@@ -115,6 +115,11 @@ $table-border-color: $card-border-color;
 //
 $popover-max-width: 425px;
 
+// Chart
+//
+$chart-bg: #2d1431;
+$chart-color: white;
+
 // Internal mixins
 @import "./mixins";
 
@@ -141,6 +146,10 @@ button.btn[type=submit] {
   font-weight: bold;
 }
 
+.lead {
+  font-family: $leads-font-family;
+  font-weight: 300;
+}
 
 /**
  *  Do not remove the comments below. It's the markers used by wiredep to inject

@@ -1,129 +1,119 @@
 <div class="main">
-
-  <form class="main__elastic">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-4">
-          <div class="card">
-            <h4 class="card-heading main__elastic__title">
-              <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetCountryAlpha2()" ng-if="main.hasCountryAlpha2()">
-                All
-              </button>
-              Country
-            </h4>
-            <ul class="list-unstyled main__elastic__list main__elastic__list--country">
-              <li ng-repeat="country in ::main.countries">
-                <button class="btn btn-primary btn-xs btn-block main__elastic__list__item"
-                        ng-click="main.toggleCountryAlpha2(country.alpha2)"
-                        ng-class="{
-                          'main__elastic__list__item--active': main.isCountryAlpha2(country.alpha2),
-                          'main__elastic__list__item--reduced': !main.matchCountryAlpha2(country.alpha2)
-                        }">
-                  {{ country.name }}
+  <form class="main__elastic" ng-if="!('main.chart' | isState)">
+    <div class="main__elastic__introduction">
+      <div class="container">
+        <h1>
+          Political Gaps
+        </h1>
+        <p class="lead">
+          PoliticalGaps is the first investigation on <a href="http://www.jquestapp.com" target="_blank">jQuest</a>, a platform for journalism schools that lets journalism students in Europe learn datajournalism, connect with one another and investigate collaboratively.
+        </p>
+        <p class="lead">
+          We are investigating the representativity of elected officials in assemblies all over Europe. The data you see here is live. The database will grow more complete as the academic year continues.
+        </p>
+      </div>
+    </div>
+    <div class="main__elastic__filters">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="main__elastic__filters__card">
+              <h4 class="main__elastic__filters__title">
+                <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetCountryAlpha2()" ng-if="main.hasCountryAlpha2()">
+                  All
                 </button>
-              </li>
-            </ul>
+                <i class="fa fa-filter"></i> Country
+              </h4>
+              <ul class="list-unstyled main__elastic__list main__elastic__list--country">
+                <li ng-repeat="country in ::main.countries">
+                  <a class="btn-block main__elastic__list__item"
+                          ng-click="main.toggleCountryAlpha2(country.alpha2)"
+                          ng-class="{
+                            'main__elastic__list__item--active': main.isCountryAlpha2(country.alpha2),
+                            'main__elastic__list__item--reduced': !main.someCountryAlpha2(country.alpha2)
+                          }">
+                    <span class="tag pull-xs-right">
+                      {{ main.matchCountryAlpha2(country.alpha2).length }}
+                    </span>
+                    {{ country.name }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-4">
-          <div class="card">
-            <h4 class="card-heading main__elastic__title">
-              <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetDifficultyLevel()" ng-if="main.hasDifficultyLevel()">
-                All
-              </button>
-              Administrative level
-            </h4>
-            <ul class="list-unstyled main__elastic__list main__elastic__list--administrative-level">
-              <li ng-repeat="difficultyLevel in ::main.difficultyLevels">
-                <button class="btn btn-primary btn-xs btn-block main__elastic__list__item"
-                        ng-click="main.toggleDifficultyLevel(difficultyLevel)"
-                        ng-class="{
-                          'main__elastic__list__item--active': main.isDifficultyLevel(difficultyLevel),
-                          'main__elastic__list__item--reduced': !main.matchDifficultyLevel(difficultyLevel)
-                        }">
-                  {{ main.administrativeLevels[difficultyLevel - 1] }}
+          <div class="col-xs-4">
+            <div class="main__elastic__filters__card">
+              <h4 class="main__elastic__filters__title">
+                <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetDifficultyLevel()" ng-if="main.hasDifficultyLevel()">
+                  All
                 </button>
-              </li>
-            </ul>
+                <i class="fa fa-filter"></i> Administrative level
+              </h4>
+              <ul class="list-unstyled main__elastic__list main__elastic__list--administrative-level">
+                <li ng-repeat="difficultyLevel in ::main.difficultyLevels">
+                  <a class="btn-block main__elastic__list__item"
+                          ng-click="main.toggleDifficultyLevel(difficultyLevel)"
+                          ng-class="{
+                            'main__elastic__list__item--active': main.isDifficultyLevel(difficultyLevel),
+                            'main__elastic__list__item--reduced': !main.someDifficultyLevel(difficultyLevel)
+                          }">
+                    <span class="tag pull-xs-right">
+                      {{ main.matchDifficultyLevel(difficultyLevel).length }}
+                    </span>
+                    {{ main.administrativeLevels[difficultyLevel - 1] }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <div class="col-xs-4">
-          <div class="card">
-            <h4 class="card-heading main__elastic__title">
-              <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetTerm()" ng-if="main.hasTerm()">
-                All
-              </button>
-              Term
-            </h4>
-            <ul class="list-unstyled main__elastic__list main__elastic__list--term">
-              <li ng-repeat="term in ::main.terms">
-                <button class="btn btn-primary btn-xs btn-block main__elastic__list__item"
-                        ng-click="main.toggleTerm(term)"
-                        ng-class="{
-                          'main__elastic__list__item--active': main.isTerm(term),
-                          'main__elastic__list__item--reduced': !main.matchTerm(term)
-                        }">
-                  {{ term }}
+          <div class="col-xs-4">
+            <div class="main__elastic__filters__card">
+              <h4 class="main__elastic__filters__title">
+                <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetTerm()" ng-if="main.hasTerm()">
+                  All
                 </button>
-              </li>
-            </ul>
+                <i class="fa fa-filter"></i> Term
+              </h4>
+              <ul class="list-unstyled main__elastic__list main__elastic__list--term">
+                <li ng-repeat="term in ::main.terms">
+                  <a class="btn-block main__elastic__list__item"
+                          ng-click="main.toggleTerm(term)"
+                          ng-class="{
+                            'main__elastic__list__item--active': main.isTerm(term),
+                            'main__elastic__list__item--reduced': !main.someTerm(term)
+                          }">
+                    <span class="tag pull-xs-right">
+                      {{ main.matchTerm(term).length }}
+                    </span>
+                    {{ term }}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-
-      <ul>
-        <li ng-repeat="legislature in main.getFilteredLegislatures()">
-          {{ legislature.name }}
+      <div class="main__elastic__filters__alert">
+        <div class="container">
+          There is {{ main.getFilteredLegislatures().length }} results that match with your filters.
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <ul class="list-unstyled">
+        <li ng-repeat="legislature in main.getFilteredLegislatures()" class="main__elastic__card">
+          <div class="pull-xs-right">
+            <button class="btn btn-link btn-outline" ui-sref="main.chart({ legislature_id_eq: legislature.id })">
+              Visualize representativity
+            </button>
+          </div>
+          <h5>{{ legislature.name_english }}</h5>
+          <p>
+            {{ legislature.country.name }} - {{ legislature.term }}
+          </p>
         </li>
       </ul>
-
     </div>
   </form>
-
-<!--
-  <div class="text-center main__heading">
-    <h2 class="main__heading__title">
-      Political Gaps
-    </h2>
-    <p class="main__heading__title__description">
-      How representative are our representatives?
-    </p>
-
-    <form class="main__heading__legislatures form-inline">
-      <label>
-        Diversity report for
-        <select class="form-control"
-                ng-options="legislature.id as legislature.display_name group by legislature.country.name for legislature in main.legislatures"
-                ng-model="main.legislature">
-        </select>
-      </label>
-    </form>
-    <br />
-    <ul class="nav nav-pills main__heading__tabs">
-      <li class="nav-item">
-        <a class="nav-link" ui-sref="main({topic: 'gender'})" ui-sref-active="active">
-          Gender
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" ui-sref="main({topic: 'age_range'})" ui-sref-active="active">
-          Age
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" ui-sref="main({topic: 'profession_category'})" ui-sref-active="active">
-          Occupation
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" ui-sref="main({topic: 'political_leaning'})" ui-sref-active="active">
-          Political leaning
-        </a>
-      </li>
-    </ul>
-
-  </div>
-  <div class="main__chart main__chart--{{ main.topic }}" ui-view main-chart="main.summary" topic="main.topic"></div>
--->
-
+  <div ui-view></div>
 </div>

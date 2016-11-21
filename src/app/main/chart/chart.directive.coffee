@@ -1,8 +1,9 @@
 angular.module 'politicalGaps'
   .directive 'mainChart', (topics)->
     'ngInject'
+    restrict: 'A'
     scope:
-      mainChart: '='
+      summary: '='
       topic: '='
     link: (scope, el, attrs)->
       # Declare and instanciate the MainChart class
@@ -10,7 +11,7 @@ angular.module 'politicalGaps'
         # Private attributes
         _groups: {}
         # Public attributes
-        summary: scope.mainChart.global
+        summary: scope.summary.global
         el: d3.select el[0]
         # Public methods
         width: =>
