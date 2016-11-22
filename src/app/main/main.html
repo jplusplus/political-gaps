@@ -22,7 +22,7 @@
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetCountryAlpha2()" ng-if="main.hasCountryAlpha2()">
                   All
                 </button>
-                <i class="fa fa-filter"></i> Country
+                Country
               </h4>
               <ul class="list-unstyled main__elastic__list main__elastic__list--country">
                 <li ng-repeat="country in ::main.countries">
@@ -47,7 +47,7 @@
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetDifficultyLevel()" ng-if="main.hasDifficultyLevel()">
                   All
                 </button>
-                <i class="fa fa-filter"></i> Administrative level
+                Administrative level
               </h4>
               <ul class="list-unstyled main__elastic__list main__elastic__list--administrative-level">
                 <li ng-repeat="difficultyLevel in ::main.difficultyLevels">
@@ -72,7 +72,7 @@
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetTerm()" ng-if="main.hasTerm()">
                   All
                 </button>
-                <i class="fa fa-filter"></i> Term
+                Term
               </h4>
               <ul class="list-unstyled main__elastic__list main__elastic__list--term">
                 <li ng-repeat="term in ::main.terms">
@@ -95,7 +95,7 @@
       </div>
       <div class="main__elastic__filters__alert">
         <div class="container">
-          There is {{ main.getFilteredLegislatures().length }} results that match with your filters.
+          <i class="fa fa-filter"></i> There is {{ main.getFilteredLegislatures().length }} results that match with your filters.
         </div>
       </div>
     </div>
@@ -109,8 +109,11 @@
           </div>
           <h5>{{ legislature.name_english }}</h5>
           <p>
-            {{ legislature.country.name }} - {{ legislature.term }}
+            {{ legislature.country.name }} - {{ legislature.term }} - Completed at {{ legislature.completion * 100 | number:0 }}%
           </p>
+          <div class="main__elastic__card__progress">
+            <div class="main__elastic__card__progress__bar" ng-style="{ width: legislature.completion * 100 + '%' }"></div>
+          </div>
         </li>
       </ul>
     </div>

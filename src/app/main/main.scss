@@ -109,8 +109,25 @@
       margin-bottom: $spacer;
       border-radius:2px;
       padding:$spacer $spacer * 2;
-      box-shadow:0 3px 0 0 darken($body-bg, 10);
+      position: relative;
       @include gradient-directional(darken($body-bg, 4), darken($body-bg, 2));
+
+      &__progress {
+        position: absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        height:3px;
+        background: darken($body-bg, 10);
+
+        &__bar {
+          position: absolute;
+          left:0;
+          top:0;
+          bottom:0;
+          background: $brand-success;
+        }
+      }
     }
   }
 

@@ -6,7 +6,7 @@ angular.module 'politicalGaps'
       _countryAlpha2: []
       _difficultyLevel: []
       _term: []
-      __legislatures: []
+      _legislatures: []
       # Public attributes
       legislatures: legislatures
       administrativeLevels: [
@@ -83,9 +83,10 @@ angular.module 'politicalGaps'
         # Return the filter
         filter
       buildFilteredLegislatures: =>
-        @__legislatures = _.filter legislatures, @isFiltered
+        @_legislatures = _.filter legislatures, @isFiltered
+        @_legislatures = _.orderBy @_legislatures, (l)-> -1*l.completion
       getFilteredLegislatures: =>
-        @__legislatures
+        @_legislatures
       buildFilters: =>
         # Values for the list
         @countries = _.chain(legislatures).map('country').uniq().sortBy((c)-> c.name).value()
