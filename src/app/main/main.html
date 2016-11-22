@@ -75,7 +75,7 @@
                 Term
               </h4>
               <ul class="list-unstyled main__elastic__list main__elastic__list--term">
-                <li ng-repeat="term in main.terms | filter:main.isRecentTerm | filter:main.showTerm">
+                <li ng-repeat="term in main.terms | filter:main.isRecentTerm | filter:main.someTerm">
                   <div class="main__elastic__list__title" ng-if="$first">Recent</div>
                   <a class="btn-block main__elastic__list__item"
                           ng-click="main.toggleTerm(term)"
@@ -88,7 +88,7 @@
                     {{ term }}
                   </a>
                 </li>
-                <li ng-repeat="term in main.terms | filter:main.isOldTerm | filter:main.showTerm">
+                <li ng-repeat="term in main.terms | filter:main.isOldTerm | filter:main.someTerm">
                   <div class="main__elastic__list__title" ng-if="$first">Old</div>
                   <a class="btn-block main__elastic__list__item"
                           ng-click="main.toggleTerm(term)"
@@ -101,7 +101,7 @@
                     {{ term }}
                   </a>
                 </li>
-                <li ng-repeat="term in main.terms | filter:main.isHistoricalTerm | filter:main.showTerm">
+                <li ng-repeat="term in main.terms | filter:main.isHistoricalTerm | filter:main.someTerm">
                   <div class="main__elastic__list__title" ng-if="$first">Historical</div>
                   <a class="btn-block main__elastic__list__item"
                           ng-click="main.toggleTerm(term)"

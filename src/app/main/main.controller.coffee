@@ -87,8 +87,6 @@ angular.module 'politicalGaps'
         @_legislatures = _.orderBy @_legislatures, (l)-> -1*l.completion
       getFilteredLegislatures: =>
         @_legislatures
-      showTerm: (term)=>
-        not @hasTerm() or @someTerm term
       isRecentTerm: (term)=>
         @getEndYearDelta(term) <= 0
       isOldTerm: (term)=>
