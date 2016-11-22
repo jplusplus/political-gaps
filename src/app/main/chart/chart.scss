@@ -1,3 +1,65 @@
+.main__heading {
+  padding:0;
+  border-radius: 3px;
+  margin:0 auto;
+  position: fixed;
+  left:50%;
+  text-align: center;
+  color: $chart-color;
+  transform: translateX(-50%);
+  box-shadow:0 3px 0 0 lighten($brand-success, 10);
+  min-width:460px;
+
+  background: url('../assets/images/people-coffee-notes-tea-high-contrast-green.jpg') no-repeat center center $brand-success;
+  background-size: cover;
+
+  &__title {
+    padding: $spacer $spacer * $line-height;
+
+    h3 {
+      font-size: 1.2em;
+      font-weight: bolder;
+    }
+  }
+
+  &__filters {
+    display: block;
+    background: darken($brand-success, 10);
+    font-size:.8em;
+    text-transform: uppercase;
+    font-weight:bolder;
+    padding:$spacer/4;
+    color:white;
+  }
+
+  &__tabs {
+    display: block;
+    position: absolute;
+    top:100%;
+    width:100%;
+    text-align: center;
+    white-space: nowrap;
+
+    .nav-item {
+      float:none;
+      display: inline-block;
+
+      a {
+        color:rgba($chart-color, .8);
+
+        &.nav-link.active {
+          background: url('../assets/images/people-coffee-notes-tea-high-contrast-green.jpg') no-repeat center center $brand-success;
+          background-size: cover;
+          color:$chart-color;
+          font-weight: bold;
+          box-shadow:0 3px 0 0 lighten($brand-success, 10);
+          border-radius: 0 0 4px 4px;
+        }
+      }
+    }
+  }
+}
+
 .main__chart {
   background: $chart-bg;
   border-radius: 3px;

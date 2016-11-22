@@ -17,7 +17,13 @@
     background: $body-bg;
     z-index:100;
     overflow: auto;
+    @include transition(.6s);
+    transform: translateY(0);
 
+    &.ng-hide {
+      transform: translateY(-100%);
+    }
+    
     &__introduction {
       color:white;
       padding:$spacer * 3 0;
@@ -126,39 +132,6 @@
           top:0;
           bottom:0;
           background: $brand-success;
-        }
-      }
-    }
-  }
-
-  &__heading {
-    padding:$spacer * $line-height;
-    border-radius: 3px;
-    margin:0 auto;
-    font-size: 1.1em;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    color: $chart-color;
-    @include gradient-y($chart-bg, rgba($chart-bg, 0));
-
-    &__description {
-      font-family: $leads-font-family;
-      font-size: 1em;
-      font-weight: lighter;
-    }
-
-    &__tabs {
-      display: inline-block;
-
-      a {
-        color:rgba($chart-color, .8);
-
-        &.nav-link.active {
-          color:$chart-color;
-          font-weight: bold;
-          box-shadow:0 3px 0 0 lighten(#48344C, 10);
-          border-radius: 0 0 4px 4px;
         }
       }
     }

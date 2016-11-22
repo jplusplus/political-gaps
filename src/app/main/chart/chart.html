@@ -1,7 +1,15 @@
 <div class="text-center main__heading">
-  <h2 class="main__heading__title" ui-sref="main">
-    Political Gaps
-  </h2>
+  <a class="main__heading__filters" ui-sref="main">
+    <i class="fa fa-caret-down fa-fw"></i> See the representativity of another assembly
+  </a>
+  <div class="main__heading__title">
+    <h3>
+      {{ chart.legislature.name_english }}
+    </h3>
+    <p class="lead m-b-0">
+      {{ chart.legislature.country.name }} - {{ chart.legislature.term }} - Completed at {{ chart.legislature.completion * 100 | number:0 }}%
+    </p>
+  </div>
   <ul class="nav nav-pills main__heading__tabs">
     <li class="nav-item">
       <a class="nav-link" ui-sref="main.chart({topic: 'gender'})" ui-sref-active="active">
