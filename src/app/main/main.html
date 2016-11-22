@@ -75,12 +75,38 @@
                 Term
               </h4>
               <ul class="list-unstyled main__elastic__list main__elastic__list--term">
-                <li ng-repeat="term in ::main.terms">
+                <li ng-repeat="term in main.terms | filter:main.isRecentTerm | filter:main.showTerm">
+                  <div class="main__elastic__list__title" ng-if="$first">Recent</div>
                   <a class="btn-block main__elastic__list__item"
                           ng-click="main.toggleTerm(term)"
                           ng-class="{
-                            'main__elastic__list__item--active': main.isTerm(term),
-                            'main__elastic__list__item--reduced': !main.someTerm(term)
+                            'main__elastic__list__item--active': main.isTerm(term)
+                          }">
+                    <span class="tag pull-xs-right">
+                      {{ main.matchTerm(term).length }}
+                    </span>
+                    {{ term }}
+                  </a>
+                </li>
+                <li ng-repeat="term in main.terms | filter:main.isOldTerm | filter:main.showTerm">
+                  <div class="main__elastic__list__title" ng-if="$first">Old</div>
+                  <a class="btn-block main__elastic__list__item"
+                          ng-click="main.toggleTerm(term)"
+                          ng-class="{
+                            'main__elastic__list__item--active': main.isTerm(term)
+                          }">
+                    <span class="tag pull-xs-right">
+                      {{ main.matchTerm(term).length }}
+                    </span>
+                    {{ term }}
+                  </a>
+                </li>
+                <li ng-repeat="term in main.terms | filter:main.isHistoricalTerm | filter:main.showTerm">
+                  <div class="main__elastic__list__title" ng-if="$first">Historical</div>
+                  <a class="btn-block main__elastic__list__item"
+                          ng-click="main.toggleTerm(term)"
+                          ng-class="{
+                            'main__elastic__list__item--active': main.isTerm(term)
                           }">
                     <span class="tag pull-xs-right">
                       {{ main.matchTerm(term).length }}

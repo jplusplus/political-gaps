@@ -87,6 +87,20 @@ angular.module 'politicalGaps'
         @_legislatures = _.orderBy @_legislatures, (l)-> -1*l.completion
       getFilteredLegislatures: =>
         @_legislatures
+      showTerm: (term)=>
+        not @hasTerm() or @someTerm term
+      isRecentTerm: (term)=>
+        @getEndYearDelta(term) <= 0
+      isOldTerm: (term)=>
+        @getEndYearDelta(term) > 0 and @getEndYearDelta(term) <= 30
+      isHistoricalTerm: (term)=>
+        @getEndYearDelta(term) > 30
+      getTermEndYear: (term)->
+        1 * term.split('-')[1]
+      getCurrentYear: ->
+        (new Date).getFullYear()
+      getEndYearDelta: (term)=>
+        @getCurrentYear() - @getTermEndYear(term)
       buildFilters: =>
         # Values for the list
         @countries = _.chain(legislatures).map('country').uniq().sortBy((c)-> c.name).value()

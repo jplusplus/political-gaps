@@ -23,7 +23,7 @@
     &.ng-hide {
       transform: translateY(-100%);
     }
-    
+
     &__introduction {
       color:white;
       padding:$spacer * 3 0;
@@ -76,6 +76,16 @@
       overflow: auto;
       padding:0;
       margin:0;
+      background: inherit;
+
+      &__title {
+        font-weight: bold;
+        text-transform: uppercase;
+        padding:$spacer/2 $spacer;
+        font-size:.9em;
+        color:rgba(white, .5);
+        background: inherit;
+      }
 
       &__item {
         overflow: hidden;
