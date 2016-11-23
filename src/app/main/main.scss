@@ -43,8 +43,11 @@
       padding-top:$spacer * 2;
       margin-bottom:$spacer * 2;
 
-      .btn {
-        color:inherit;
+      &__heading {
+        font-size:1.1em;
+        text-transform: uppercase;
+        color:rgba(white, 0.7);
+        margin-bottom:$spacer;
       }
 
       &__card {
@@ -52,11 +55,26 @@
       }
 
       &__title {
-        font-size: 1.1em;
+        font-size: 1em;
         padding:$spacer $spacer;
         border-bottom: 1px solid rgba(white, .1);
         margin:0;
         font-weight: bolder;
+        white-space: nowrap;
+        position: relative;
+        background: inherit;
+
+        .btn {
+          color:inherit;
+          background: inherit;
+          position: absolute;
+          z-index:100;
+          top:50%;
+          right:$spacer;
+          transform: translateY(-50%);
+          border-left:1px solid rgba(white, .1);
+          @include box-shadow(0 0 4px 4px #463649);
+        }
       }
 
       &__alert {
@@ -126,7 +144,12 @@
       border-radius:2px;
       padding:$spacer $spacer * 2;
       position: relative;
-      @include gradient-directional(darken($body-bg, 4), darken($body-bg, 2));
+      cursor: pointer;
+      background: darken($body-bg, 2);
+
+      &:hover  {
+        background: darken($body-bg, 4);
+      }
 
       &__progress {
         position: absolute;

@@ -123,6 +123,10 @@ $chart-color: white;
 // Internal mixins
 @import "./mixins";
 
+body, html{
+  min-width: 990px;
+}
+
 // Fix
 //
 .input-group select:not([size]):not([multiple]).form-control {
@@ -137,7 +141,7 @@ a.btn:not(.btn-reverse):not(.btn-secondary):not(.btn-link) {
   box-shadow: 0 1px 2px 0 rgba(black, .1);
 }
 
-.btn.btn-outline {
+.btn.btn-outline, .btn.btn-outline:hover {
   border:2px solid;
   border-radius: $line-height * 1em;
 }

@@ -3,12 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Political Gaps - jQuest</title>
-    <meta name="viewport" content="width=device-width">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script>
+      if(screen.width <= 440) {
+        var mvp = document.getElementById('viewport');
+        mvp.setAttribute('content', 'user-scalable=no, width=440');
+      }
+    </script>
+
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
     <meta property="article:author" content="Journalism++">
-    <meta name="theme-color" content="#48344C">
+    <meta name="theme-color" content="#5D8D7D">
 
     <meta name="description" content="Discover how representative are your representatives.">
     <meta name="twitter:description" content="Discover how representative are your representatives.">

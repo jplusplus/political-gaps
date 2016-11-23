@@ -99,6 +99,25 @@ angular.module 'politicalGaps'
         (new Date).getFullYear()
       getEndYearDelta: (term)=>
         @getCurrentYear() - @getTermEndYear(term)
+      gs: (target)=>
+        # Build the private attribute reference for this target
+        attr = @["_#{target}"] or []
+        # Closure function
+        (val)=>
+          # Empty the target array
+          if val is null
+            # Empty the target
+            do attr.pop while attr.length > 0
+            # Rebuild the list
+            do @buildFilteredLegislatures
+          # Replace the target array with a single value
+          else if val?
+            # Add the value
+            angular.extend attr, [val]
+            # Rebuild the list
+            do @buildFilteredLegislatures
+          # Return the first element (if any)
+          _.head(attr)
       buildFilters: =>
         # Values for the list
         @countries = _.chain(legislatures).map('country').uniq().sortBy((c)-> c.name).value()

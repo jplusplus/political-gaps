@@ -133,6 +133,10 @@
       padding-bottom: $spacer;
       color:rgba($chart-color, .4);
 
+      @include media-breakpoint-down(sm) {
+        font-size: .7rem;
+      }
+
       div {
         font-weight: bold;
         color:$chart-color;

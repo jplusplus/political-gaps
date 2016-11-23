@@ -15,8 +15,49 @@
     </div>
     <div class="main__elastic__filters">
       <div class="container">
-        <div class="row">
-          <div class="col-xs-4">
+        <h3 class="main__elastic__filters__heading">Filter legislatures</h3>
+        <div class="hidden-md-up">
+          <div class="form-group">
+            <label for="input-country">
+              By country
+            </label>
+            <select ng-options="country.alpha2 as country.name for country in ::main.countries"
+                    ng-model="main.gs('countryAlpha2')"
+                    ng-model-options="{ getterSetter: true }"
+                    class="form-control"
+                    id="input-country">
+              <option value="">All</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-difficulty-level">
+              By administrative levels
+            </label>
+            <select ng-options="level as main.administrativeLevels[level - 1] for level in ::main.difficultyLevels"
+                    ng-model="main.gs('difficultyLevel')"
+                    ng-model-options="{ getterSetter: true }"
+                    class="form-control"
+                    id="input-difficulty-level">
+              <option value="">All</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="input-term">
+              By term
+            </label>
+            <select ng-options="term as term for term in ::main.terms"
+                    ng-model="main.gs('term')"
+                    ng-model-options="{ getterSetter: true }"
+                    class="form-control"
+                    id="input-term">
+              <option value="">All</option>
+            </select>
+          </div>
+        </div>
+        <div class="row hidden-sm-down">
+          <div class="col-sm-4">
             <div class="main__elastic__filters__card">
               <h4 class="main__elastic__filters__title">
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetCountryAlpha2()" ng-if="main.hasCountryAlpha2()">
@@ -41,7 +82,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-xs-4">
+          <div class="col-sm-4">
             <div class="main__elastic__filters__card">
               <h4 class="main__elastic__filters__title">
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetDifficultyLevel()" ng-if="main.hasDifficultyLevel()">
@@ -66,7 +107,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-xs-4">
+          <div class="col-sm-4">
             <div class="main__elastic__filters__card">
               <h4 class="main__elastic__filters__title">
                 <button class="btn btn-link btn-sm pull-xs-right" ng-click="main.resetTerm()" ng-if="main.hasTerm()">
@@ -127,13 +168,15 @@
     </div>
     <div class="container">
       <ul class="list-unstyled">
-        <li ng-repeat="legislature in main.getFilteredLegislatures()" class="main__elastic__card">
-          <div class="pull-xs-right">
-            <button class="btn btn-link btn-outline" ui-sref="main.chart({ legislature_id_eq: legislature.id })">
+        <li ng-repeat="legislature in main.getFilteredLegislatures()" class="main__elastic__card" ui-sref="main.chart({ legislature_id_eq: legislature.id })">
+          <div class="pull-sm-right hidden-sm-down">
+            <button class="btn btn-link btn-outline">
               Visualize representativity
             </button>
           </div>
-          <h5>{{ legislature.name_english }}</h5>
+          <h5>
+            {{ legislature.name_english }}
+          </h5>
           <p>
             {{ legislature.country.name }} - {{ legislature.term }} - Completed at {{ legislature.completion * 100 | number:0 }}%
           </p>
