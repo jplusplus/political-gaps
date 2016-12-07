@@ -178,7 +178,7 @@
             {{ legislature.name_english }}
           </h5>
           <p>
-            {{ legislature.country.name }} - {{ legislature.term }} - Completed at {{ legislature.completion * 100 | number:0 }}%
+            {{ legislature.territory }} - {{ legislature.term }} - Completed at {{ legislature.completion * 100 | number:0 }}%
           </p>
           <div class="main__elastic__card__progress">
             <div class="main__elastic__card__progress__bar" ng-style="{ width: legislature.completion * 100 + '%' }"></div>
