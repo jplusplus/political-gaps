@@ -1,27 +1,25 @@
-```
-        _   .--------------------------------.
-      _|o|_ |    Application brought to you  |
-       (_)  |    with the amazing Yeoman!    |
-     / \Y/ \;-,______________________________|
-    ||  :  |\//
-    (| --- |
-      |_|_|
-       \ /
-```
+# Future by Trump
 
 ## Installation
 
-Install `node` and `npm` then run:
+Install `node`, `npm` (or `yarn`) and `bower` then run:
 
 ```
-npm install
-bower install
+make install
 ```
 
 You can now start serving static files with gulp!
 
 ```
-gulp serve
+make run
+```
+
+## Update the data
+
+Run the following command to update data from the jQuest API:
+
+```
+make prefetch
 ```
 
 ## Deploy on Git Pages
@@ -29,6 +27,5 @@ gulp serve
 Run the following commands
 
 ```
-gulp prefetch
-gulp deploy
+make deploy
 ```

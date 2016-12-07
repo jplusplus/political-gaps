@@ -5,7 +5,7 @@ deploy:
 	gulp deploy
 
 install:
-	npm install
+	yarn || npm install
 	bower install
 
 prefetch:
