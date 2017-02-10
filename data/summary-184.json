@@ -1,0 +1,1 @@
+{"global":{"total":3,"age":{"min":50,"max":60,"median":52.0},"gender":{"male":1,"female":1},"political_leaning":{"Conservative":1,"Left wing":1},"profession_category":{"Medical doctor, dentist, optician":1,"Teacher":1},"age_range":{}},"assigned":{"total":0,"age":{"min":null,"max":null,"median":null},"gender":{},"political_leaning":{},"profession_category":{},"age_range":{}}}

@@ -1,0 +1,1 @@
+{"global":{"total":12,"age":{"min":35,"max":51,"median":44.0},"gender":{"male":5},"political_leaning":{"Conservative":1,"Center (liberal)":2},"profession_category":{"Other":2,"Lawyer":1},"age_range":{"30-40":2,"40-50":1,"50-60":2}},"assigned":{"total":0,"age":{"min":null,"max":null,"median":null},"gender":{},"political_leaning":{},"profession_category":{},"age_range":{}}}
