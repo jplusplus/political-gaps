@@ -14,7 +14,7 @@ const COUNTRIES_URL     = API_BASE + '/api/v1/countries?limit=300';
 const COUNTRIES_DIR     = path.join(conf.paths.src, '/data');
 const COUNTRIES_PATH    = path.join(COUNTRIES_DIR, '/countries.json');
 
-const LEGISLATURES_URL  = API_BASE + '/political-gaps/api/v1/legislatures?limit=300';
+const LEGISLATURES_URL  = API_BASE + '/political-gaps/api/v1/legislatures?limit=1000';
 const LEGISLATURES_DIR  = path.join(conf.paths.src, '/data');
 const LEGISLATURES_PATH = path.join(LEGISLATURES_DIR, '/legislatures.json');
 
